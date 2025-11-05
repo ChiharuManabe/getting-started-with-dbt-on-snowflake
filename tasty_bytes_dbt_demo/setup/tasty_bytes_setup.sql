@@ -11,15 +11,11 @@ CREATE OR REPLACE WAREHOUSE tasty_bytes_dbt_wh
 USE WAREHOUSE tasty_bytes_dbt_wh;
 
 CREATE DATABASE IF NOT EXISTS tasty_bytes_dbt_db;
+CREATE OR REPLACE SCHEMA tasty_bytes_dbt_db.integrations;
 CREATE OR REPLACE SCHEMA tasty_bytes_dbt_db.dev;
 CREATE OR REPLACE SCHEMA tasty_bytes_dbt_db.prod;
-*/
-
-USE ROLE sysadmin;
-USE WAREHOUSE tasty_bytes_dbt_wh;
-USE DATABASE tasty_bytes_dbt_db;
 CREATE OR REPLACE SCHEMA tasty_bytes_dbt_db.raw;
-
+*/
 
 USE ROLE accountadmin;
 ALTER SCHEMA tasty_bytes_dbt_db.dev SET LOG_LEVEL = 'INFO';
@@ -49,7 +45,7 @@ CREATE OR REPLACE EXTERNAL ACCESS INTEGRATION dbt_access_integration
 USE ROLE sysadmin;
 USE WAREHOUSE tasty_bytes_dbt_wh;
 USE DATABASE tasty_bytes_dbt_db;
-USE SCHEAMA public;
+USE SCHEMA tasty_bytes_dbt_db.public;
 
 CREATE OR REPLACE FILE FORMAT tasty_bytes_dbt_db.public.csv_ff 
 type = 'csv';
